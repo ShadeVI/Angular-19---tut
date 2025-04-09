@@ -17,4 +17,18 @@
       <li>Does this location have laundry: {{ housingLocation?.laundry }}</li>
     </ul>
   </section>
+  <section class="listing-apply">
+    <h2 class="section-heading">Apply now!</h2>
+    <!-- [formGroup]="applyForm" ===>> binding attribute -->
+    <!-- (submit)="submitApplication" ===>> binding event -->
+    <form [formGroup]="applyForm" (submit)="submitApplication()">
+      <label for="first-name">First name:</label>
+      <input type="text" id="first-name" formControlName="firstName" required />
+      <label for="last-name">Last name:</label>
+      <input type="text" id="last-name" formControlName="lastName"  required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email"  required />
+      <button type="submit" class="primary">Submit</button>
+    </form>
+  </section>
 </article>
