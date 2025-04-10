@@ -1,11 +1,17 @@
 <section>
-  <form>
-    <input type="text" placeholder="Filter by city" />
-    <button class="primary" type="button">Search</button>
+  <!-- This avoid the default behavior submit event but mantain the functionality -->
+  <form (submit)="filterResults(filter.value); $event.preventDefault()">
+    <!-- #filter ==> # syntax create a template reference variable -> get a reference on the template and use it in the angular component -->
+     <!-- Use this syntax when FormGroup and FormControl or two-way data binding are too much for this simple use case form -->
+    <input type="text" placeholder="Filter by city" #filter />
+    <!-- filter.value come from the HTML element through the #filter reference -->
+    <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+    <!-- Not using two-way data binding. To clean we use the reset type and custom function to reset the list -->
+    <button type="reset" (click)="resetHousingLocationList()" >Reset</button>
   </form>
 </section>
 <section class="results">
-  @for (housingLocation of housingLocationList; track housingLocation.id){
+  @for (housingLocation of filteredLocationList; track housingLocation.id){
     <app-housing-location [housingLocation]="housingLocation"></app-housing-location>
   }
 </section>
