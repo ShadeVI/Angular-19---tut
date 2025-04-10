@@ -31,7 +31,7 @@ export class DetailsComponent {
 
     // Alternatively, you can use the snapshot method to get the ID directly. Snapshot is a one-time read of the route parameters. Instantánea (sincrónica).
     const housingLocationId = Number(this.route.snapshot.params['id']);
-    this.housingLocation = this.housingService.getHousingLocationById(housingLocationId)
+    this.housingService.getHousingLocationById(housingLocationId).then(location => this.housingLocation = location)
   }
 
   submitApplication() {
